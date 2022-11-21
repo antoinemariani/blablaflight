@@ -14,6 +14,27 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_21_155134) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "users_id", null: false
+    t.bigint "flights_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["flights_id"], name: "index_bookings_on_flights_id"
+    t.index ["users_id"], name: "index_bookings_on_users_id"
+  end
+
+  create_table "flights", force: :cascade do |t|
+    t.integer "capacity"
+    t.string "departure"
+    t.string "arrival"
+    t.date "date"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "price"
+    t.index ["user_id"], name: "index_flights_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -29,4 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_21_155134) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookings", "flights", column: "flights_id"
+  add_foreign_key "bookings", "users", column: "users_id"
+  add_foreign_key "flights", "users"
 end
