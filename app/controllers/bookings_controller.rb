@@ -7,12 +7,19 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
+    authorize @booking
+  end
+
+  def show
+    @booking = Booking.find(params[:id])
+    authorize @booking
   end
 
   def create
     @booking = Booking.new(booking_params)
     @booking.user = current_user
     @booking.flight = @flight
+    authorize @booking
     if @booking.save
       redirect_to flight_path(@flight)
     else
@@ -22,6 +29,7 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking = Booking.find(params[:id])
+    authorize @booking
     @booking.destroy
     redirect_to flight_path(@booking.flight), status: :see_other
   end

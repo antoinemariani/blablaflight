@@ -1,4 +1,4 @@
-class FlightPolicy < ApplicationPolicy
+class BookingPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
@@ -10,15 +10,15 @@ class FlightPolicy < ApplicationPolicy
     true
   end
 
+  def new?
+    true
+  end
+
   def create?
     true
   end
 
-  def update?
-    record.user == user # || record.user.admin?
-  end
-
   def destroy?
-    record.user == user # || record.user.admin?
+    true
   end
 end
