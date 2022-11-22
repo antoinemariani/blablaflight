@@ -1,11 +1,11 @@
-<h1>New Flight</h1>
-<div class="container">
+<div class="container pt-5">
+<h3>Add your new flight :</h3>
   <%= simple_form_for [@flight] do |f| %>
     <%= f.input :capacity %>
     <%= f.input :date %>
-    <%= f.input :departure %>
-    <%= f.input :arrival %>
-    <%= f.input :price %>
+    <%= f.input :departure, label: "Departure airport" %>
+    <%= f.input :arrival, label: "Arrival airport" %>
+    <%= f.input :price, label: "Price (per passenger)" %>
     <%= f.submit class: "btn btn-primary mt-4" %>
   <% end %>
 </div>
