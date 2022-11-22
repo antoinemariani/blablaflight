@@ -18,11 +18,11 @@ class FlightPolicy < ApplicationPolicy
     true
   end
 
-  def update
+  def update?
     record.user == user # || record.user.admin?
   end
 
-  def destroy
+  def destroy?
     record.user == user # || record.user.admin?
   end
 end
