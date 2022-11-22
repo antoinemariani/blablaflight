@@ -1,12 +1,16 @@
 class FlightPolicy < ApplicationPolicy
   class Scope < Scope
-    # NOTE: Be explicit about which records you allow access to!
-    def resolve
-      scope.all
-    end
+    # # NOTE: Be explicit about which records you allow access to!
+    # def resolve
+    #   scope.all
+    # end
   end
 
   def show?
+    true
+  end
+
+  def profile?
     true
   end
 
@@ -18,7 +22,7 @@ class FlightPolicy < ApplicationPolicy
     record.user == user # || record.user.admin?
   end
 
-  def destroy?
+  def destroy
     record.user == user # || record.user.admin?
   end
 end
