@@ -14,6 +14,16 @@
     <%= render "layouts/navbar" %>
     <%# <p class="notice"><%= notice %>
     <%# <p class="alert"><%= alert %>
+
+    <% if notice %>
+    <div class="flash flash-success alert alert-dismissible fade show" role="notice">
+      <span><strong>Yay!</strong> 🎉 you successfully signed in to BlaBlaFlight. 🛩</span>
+      <a data-bs-dismiss="notice" aria-label="Close">
+        <i class="fas fa-times"></i>
+      </a>
+    </div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
