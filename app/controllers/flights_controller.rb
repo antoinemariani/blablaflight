@@ -8,11 +8,12 @@ class FlightsController < ApplicationController
 
   def show
     authorize @flight # Pundit
+    @booking = Booking.new
   end
 
   def new
     @flight = Flight.new
-    authorize @flight # Pundit 
+    authorize @flight # Pundit
   end
 
   def create
