@@ -12,7 +12,7 @@ class FlightsController < ApplicationController
 
   def new
     @flight = Flight.new
-    authorize @flight # Pundit
+    authorize @flight # Pundit 
   end
 
   def create
