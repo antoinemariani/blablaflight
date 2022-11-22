@@ -1,0 +1,8 @@
+<h1>Dashbord</h1>
+<% @user_flights.each do |f| %>
+  <%=f.date %>
+  <%=f.departure %>
+  <%=f.arrival %>
+  <%=f.capacity %>
+  <%=f.price %>
+<%end %>
