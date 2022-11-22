@@ -6,11 +6,8 @@ class FlightsController < ApplicationController
     @flights = Flight.all
   end
 
-  def show
-    authorize @flight # Pundit
-    @booking = Booking.new
-  end
-
+  def show; end
+  
   def new
     @flight = Flight.new
     authorize @flight # Pundit
@@ -24,18 +21,14 @@ class FlightsController < ApplicationController
     redirect_to flight_path(@flight)
   end
 
-  def edit
-    authorize @flight # Pundit
-  end
+  def edit; end
 
   def update
-    authorize @flight # Pundit
     @flight.update!(flight_params)
     redirect_to flight_path(@flight)
   end
 
   def destroy
-    authorize @flight # Pundit
     @flight.destroy!
     redirect_to flights_path, status: :see_other
   end
@@ -48,5 +41,6 @@ class FlightsController < ApplicationController
 
   def set_flight
     @flight = Flight.find(params[:id])
+    authorize @flight
   end
 end
