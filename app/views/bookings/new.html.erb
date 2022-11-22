@@ -1,0 +1,13 @@
+<h1>New Booking</h1>
+
+<div class="container">
+  <%= simple_form_for [@flight, @booking] do |f| %>
+    <%= f.submit class: "btn btn-primary mt-4" %>
+  <% end %>
+</div>
+
+<%# <%= link_to "Book this flight",
+  flight_bookings_path(@flight),
+  data: {turbo_method: :new, turbo_confirm: "Are you sure?"},
+  class: "btn btn-primary"
+%>
