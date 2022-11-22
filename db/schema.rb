@@ -15,12 +15,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_21_155134) do
   enable_extension "plpgsql"
 
   create_table "bookings", force: :cascade do |t|
-    t.bigint "users_id", null: false
-    t.bigint "flights_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "flight_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["flights_id"], name: "index_bookings_on_flights_id"
-    t.index ["users_id"], name: "index_bookings_on_users_id"
+    t.index ["flight_id"], name: "index_bookings_on_flight_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "flights", force: :cascade do |t|
@@ -50,7 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_21_155134) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "bookings", "flights", column: "flights_id"
-  add_foreign_key "bookings", "users", column: "users_id"
+  add_foreign_key "bookings", "flights"
+  add_foreign_key "bookings", "users"
   add_foreign_key "flights", "users"
 end

@@ -1,0 +1,18 @@
+
+<h2><%= @flight.departure %>-<%= @flight.arrival %></h2>
+<p>Date : <%= @flight.date %></p>
+<p>Date : <%= @flight.capacity %></p>
+<p>Captain : <%= @flight.user.first_name %> <%= @flight.user.last_name %></p>
+
+<% @bookings.each do |booking| %>
+<p><%= booking.id %></p>
+<p><%= booking.user.first_name %> <%= booking.user.last_name %></p>
+<% end %>
+
+<%= link_to "Book this flight", new_flight_booking_path(@flight) %>
+
+<%# <%= link_to "Book this flight",
+  flight_bookings_path(@flight),
+  data: {turbo_method: :new, turbo_confirm: "Are you sure?"},
+  class: "btn btn-primary"
+%>
