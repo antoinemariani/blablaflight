@@ -6,8 +6,11 @@ class FlightsController < ApplicationController
     @flights = Flight.all
   end
 
-  def show; end
-  
+  def show
+    @booking = Booking.new
+    authorize @flight
+  end
+
   def new
     @flight = Flight.new
     authorize @flight # Pundit

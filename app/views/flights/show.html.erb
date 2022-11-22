@@ -20,4 +20,16 @@
       <img src="https://kitt.lewagon.com/placeholder/users/n-fornaro" class="card-trip-user avatar-bordered" />
     </div>
   </div>
+
+        <div>
+      <ul>
+        <% @flight.bookings.each do |booking| %>
+        <li>
+          <%= booking.user.first_name %>
+        </li>
+        <% end %>
+      </ul>
+
+      </div>
+
 </div>
