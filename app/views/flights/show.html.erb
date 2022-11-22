@@ -1,5 +1,7 @@
-<h1>New <%= current_user.first_name %>'s Flight: </h1>
-<div class="container">
+<div class="container pt-3">
+  <div>
+    <%= link_to "◁ Back to flights", flights_path, class: "btn btn-danger mt-3 mb-3", style: "color: white;" %>
+  </div>
   <div class="card-trip">
     <img src="https://www.openfly.fr/contentfiles/content-page-pictures/14309/GE%CC%81NE%CC%81RAL-2.webp" />
     <div class="card-trip-infos">

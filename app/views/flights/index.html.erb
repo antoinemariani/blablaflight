@@ -4,18 +4,18 @@
     <%= link_to "Flying soon? Create a flight", new_flight_path, class: "btn btn-primary"%>
   </div>
   <br>
-  <% @flights.each do |flight| %>
-    <div class="card-product">
-      <img src="https://www.openfly.fr/contentfiles/content-page-pictures/14309/GE%CC%81NE%CC%81RAL-2.webp" />
-      <div class="card-product-infos" style="flex-grow: 1;">
-        <h2><%= flight.departure %> - <%= flight.arrival%></h2>
-        <p>Date: <strong><%= flight.date%></strong></p>
-        <p>Price: <strong><%= flight.price%></strong></p>
-        <p>Capacity : <strong><%= flight.capacity%></strong></p>
+    <% @flights.each do |flight| %>
+      <div class="card-product mt-2 mb-2">
+        <img src="https://www.openfly.fr/contentfiles/content-page-pictures/14309/GE%CC%81NE%CC%81RAL-2.webp" />
+        <div class="card-product-infos" style="flex-grow: 1;">
+          <h2><%= flight.departure %> > <%= flight.arrival%></h2>
+          <p>Date: <strong><%= flight.date%></strong></p>
+          <p>Price: <strong><%= flight.price%></strong></p>
+          <p>Capacity : <strong><%= flight.capacity%></strong></p>
+        </div>
+        <div class="card-product-infos">
+          <%= link_to "See flight / booking details", flight_path(flight), class: "btn btn-primary", style: "position: right" %>
+        </div>
       </div>
-      <div class="card-product-infos">
-        <%= link_to "See flight / booking details", flight_path(flight), class: "btn btn-primary", style: "position: right" %>
-      </div>
-    </div>
-  <%end%>
+    <%end%>
 </div>
