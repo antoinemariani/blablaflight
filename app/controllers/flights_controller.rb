@@ -7,7 +7,7 @@ class FlightsController < ApplicationController
   end
 
   def show; end
-
+  
   def new
     @flight = Flight.new
     authorize @flight # Pundit
