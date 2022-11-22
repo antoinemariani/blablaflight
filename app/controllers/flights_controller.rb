@@ -1,13 +1,11 @@
 class FlightsController < ApplicationController
   # before_action :set_flight, only: %i[show edit update destroy]
-  ########
+  
   def index
     @flights = Flight.all
   end
 
-  def show
-    @flight = Flight.find(params[:id])
-  end
+  def show; end
 
   def new
     @flight = Flight.new
@@ -20,18 +18,14 @@ class FlightsController < ApplicationController
     redirect_to flight_path(@flight)
   end
 
-  def edit
-    @flight = Flight.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @flight = Flight.find(params[:id])
     @flight.update!(flight_params)
     redirect_to flight_path(@flight)
   end
 
   def destroy
-    @flight = Flight.find(params[:id])
     @flight.destroy!
     redirect_to flights_path, status: :see_other
   end
@@ -42,7 +36,7 @@ class FlightsController < ApplicationController
     params.require(:flight).permit(:capacity, :departure, :arrival, :date, :price)
   end
 
-  # def set_flight
-  #   @flight = Flight.find(params[:id])
-  # end
+  def set_flight
+    @flight = Flight.find(params[:id])
+  end
 end
