@@ -1,1 +1,13 @@
-<h1>Show Flight</h1>
+<h1>New <%= current_user.first_name %>'s Flight: </h1>
+<div class="card-trip">
+  <img src="https://www.openfly.fr/contentfiles/content-page-pictures/14309/GE%CC%81NE%CC%81RAL-2.webp" />
+  <div class="card-trip-infos">
+    <div>
+      <h2><%= @flight.departure %> - <%=@flight.arrival %></h2>
+      <p>Date: <%= @flight.date %></p>
+      <p>capacity: <%= @flight.capacity %></p>
+    </div>
+    <h2 class="card-trip-pricing"><%= @flight.price %>€</h2>
+    <img src="https://kitt.lewagon.com/placeholder/users/n-fornaro" class="card-trip-user avatar-bordered" />
+  </div>
+</div>

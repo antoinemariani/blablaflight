@@ -1,1 +1,11 @@
-<h1>Index Flights</h1>
+<h1>All Flights:</h1>
+<br>
+<% @flights.each do |flight| %>
+  <div class="card-product">
+    <div class="card-product-infos">
+      <h2><%= flight.departure%> - <%= flight.arrival%></h2>
+      <p>Date: <strong><%= flight.date%></strong></p>
+      <p>Price: <strong><%= flight.price%>€</strong></p>
+  </div>
+</div>
+<%end%>
