@@ -17,10 +17,14 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
+    @flight = Flight.find(params[:flight_id])
     @booking.user = current_user
     @booking.flight = @flight
     authorize @booking
     if @booking.save
+      # diminuer la capacité du flight concerné
+      @flight.capacity -= 1
+      @flight.save
       redirect_to flight_path(@flight)
     else
       render :new, status: :unprocessable_entity
