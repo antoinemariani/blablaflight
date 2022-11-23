@@ -1,18 +1,25 @@
 <div class="container pt-4">
-  <div class="">
-    <h1>Hello, <%= current_user.first_name %> <%= current_user.last_name %> !</h1>
-    <div class="card-trip">
-      <div class="card-trip-infos">
-        <h2>fullname : <strong><%= current_user.first_name %> <%= current_user.last_name %></strong></h2>
-        <h2>email : <%= current_user.email %></h2>
-        <h2>pilot ? <%= current_user.pilot %></h2>
-      </div>
-    </div>
+  <h1>Hello, <%= current_user.first_name %> <%= current_user.last_name %> !</h1>
+  <div class="img-profile">
+    <% if current_user.photo.key %>
+      <%= cl_image_tag current_user.photo.key %>
+    <% else %>
+      <%= cl_image_tag("https://images.assetsdelivery.com/compings_v2/nexusby/nexusby1810/nexusby181000286.jpg") %>
+    <% end %>
   </div>
 
-  <br>
+  <div class="card-profile-infos">
+    <h2>Name : <%= current_user.first_name %> <%= current_user.last_name %></h2>
+    <h2>Email : <%= current_user.email %></h2>
+    <h2>Pilot : <%= current_user.pilot ? "Yes 🛩 " : "No 🐣"%></h2>
 
+    <%= link_to "UPDATE", edit_user_registration_path, class: "btn btn-info ms-5 mt-3" %>
+  </div>
+
+
+  <br>
   <% if current_user.pilot == true%>
+    <%= link_to "Add a Flight", new_flight_path, class: "btn btn-flat mb-4" %>
     <% sum = 0 %>
     <% @user_flights.each do |f| %>
     <div class="card-product">
@@ -22,12 +29,12 @@
         <img src="https://www.openfly.fr/contentfiles/content-page-pictures/14309/GE%CC%81NE%CC%81RAL-2.webp" />
       <% end %>
       <div class="card-product-infos" style="flex-grow: 1">
-        <h2>Flight #<%= sum += 1 %> :</h2>
-          <p>Date de départ : <%=f.date %></p>
-          <p>Départ : <%=f.departure %></p>
-          <p>Arrivée : <%=f.arrival %></p>
-          <p>Capacity :<%=f.capacity %></p>
-          <p>Price/p: <%=f.price %> euros</p>
+        <h2>Flight <%= sum += 1 %> :</h2>
+            <p>Departure Date: <%=f.date %></p>
+            <p>Departure : <%=f.departure %></p>
+            <p>Arrival : <%=f.arrival %></p>
+            <p>Capacity :<%=f.capacity %> people</p>
+            <p>Price/p: <%=f.price %> euros</p>
       </div>
           <div class="card-product-infos">
             <%= link_to "Edit this flight", edit_flight_path(f.id), class: "btn btn-outline-info me-3" %>
@@ -39,30 +46,34 @@
   <% end %>
 
   <br>
+<div>
+    <%= link_to "Add a Booking", flights_path, class: "btn btn-flat mb-4" %>
+    <% if @user_bookings.count > 0%>
+      <%sum = 0 %>
+      <%@user_bookings.each do |b| %>
+      <div class="card-product">
+        <% if b.flight.photo.attached? %>
+          <%= cl_image_tag b.flight.photo.key %>
+        <% else %>
+          <img src="https://images.unsplash.com/photo-1527605158555-853f200063e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=671&q=80" />
+        <% end %>
+        <div class="card-product-infos" style="flex-grow:1">
+          <h2>Bookings <%= sum += 1 %> :</h2>
+            <p>Departure Date :<%= b.flight.date %></p>
+            <p>Departure :<%=b.flight.departure %></p>
+            <p>Arrival :<%=b.flight.arrival %></p>
+            <p>Capacity :<%=b.flight.capacity %> people</p>
+            <p>Price :<%=b.flight.price %> euros</p>
+        </div>
+        <div class="card-product-infos">
+            <%= link_to "Cancel this booking", booking_path(b.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger me-3" %>
+        </div>
+      </div>
+</div>
 
-  <% if @user_bookings.count > 0%>
-    <%sum = 0 %>
-    <%@user_bookings.each do |b| %>
-    <div class="card-product">
-      <% if b.flight.photo.attached? %>
-        <%= cl_image_tag b.flight.photo.key %>
-      <% else %>
-        <img src="https://images.unsplash.com/photo-1527605158555-853f200063e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=671&q=80" />
-      <% end %>
-      <div class="card-product-infos" style="flex-grow: 1">
-        <h2>Booking #<%= sum += 1 %> :</h2>
-          <p>Date de départ : <%= b.flight.date %></p>
-          <p>Départ : <%=b.flight.departure %></p>
-          <p>Arrivée : <%=b.flight.arrival %></p>
-          <p>Capacity : <%=b.flight.capacity %></p>
-          <p>Price : <%=b.flight.price %> euros</p>
-      </div>
-      <div class="card-product-infos">
-          <%= link_to "Cancel this booking", booking_path(b.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger me-3" %>
-      </div>
-    </div>
     <br>
-    <%end %>
+
+    <% end %>
   <% end %>
 
 </div>
