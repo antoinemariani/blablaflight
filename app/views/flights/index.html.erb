@@ -11,11 +11,19 @@
           <h2><%= flight.departure %> > <%= flight.arrival%></h2>
           <p>Date: <strong><%= flight.date%></strong></p>
           <p>Price: <strong><%= flight.price%></strong></p>
-          <p>Capacity : <strong><%= flight.capacity%></strong></p>
+          <% if flight.capacity < 1 %>
+            <p>Flight FULL</p>
+          </div>
+            <div class="card-product-infos">
+              <%= link_to "See flight / booking details", flight_path(flight), class: "btn btn-flat disabled", style: "position: right" %>
+            </div>
+          <% else %>
+          <p>Capacity : <strong><%= flight.capacity %></strong></p>
         </div>
-        <div class="card-product-infos">
-          <%= link_to "See flight / booking details", flight_path(flight), class: "btn btn-flat", style: "position: right" %>
-        </div>
+          <div class="card-product-infos">
+            <%= link_to "See flight / booking details", flight_path(flight), class: "btn btn-flat", style: "position: right" %>
+          </div>
+        <% end %>
       </div>
     <%end%>
 </div>
