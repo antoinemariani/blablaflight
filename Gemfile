@@ -6,6 +6,9 @@ ruby "3.1.2"
 # Faker for DB seeds
 gem "faker"
 
+# Cloudinary for hosting profile pictures
+gem "cloudinary"
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
 

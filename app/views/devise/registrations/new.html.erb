@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container pt-4 ps-0">
   <div class="row">
     <div class="col">
-      <h2>Sign up</h2>
+      <h2 class="ps-0">Sign up</h2>
 
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: {turbo: false}) do |f| %>
         <%= f.error_notification %>
@@ -9,6 +9,7 @@
           <div class="form-inputs">
             <%= f.input :first_name, required: true, autofocus: true, input_html: { autocomplete: "first_name" }%>
             <%= f.input :last_name, required: true, autofocus: true, input_html: { autocomplete: "last_name" }%>
+            <%= f.input :photo, as: :file, label: "Add your profile picture" %>
             <p><%= f.input_field :pilot, as: :boolean%> Pilote</p>
             <%= f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" }%>
             <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if
@@ -17,7 +18,7 @@
           </div>
 
           <div class="form-actions">
-            <%= f.button :submit, "Sign up" %>
+            <%= f.button :submit, "Sign up", class: "btn btn-flat ms-0"%>
           </div>
           <% end %>
 
