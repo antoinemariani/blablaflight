@@ -7,7 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
 
-u = 2
+u = 1
 100.times do
   puts "Creating user #{u}"
   user = User.create(
@@ -21,7 +21,7 @@ u = 2
   u += 1
 end
 
-f = 2
+f = 1
 
 40.times do
   puts "Creating flight #{f}"
@@ -35,6 +35,16 @@ f = 2
   )
   flight.save!
   f += 1
+end
+
+b = 1
+80.times do
+  puts "Creating booking #{b}"
+  Booking.create(
+    flight: Flight.all.sample,
+    user: User.all.sample
+  )
+  b += 1
 end
 
 puts ">>>> Seed done. Please check it with 'rails console' command in terminal :-)"
