@@ -8,30 +8,36 @@
       <div>
         <h2><%= @flight.departure %> - <%=@flight.arrival %></h2>
         <p>Date: <%= @flight.date %></p>
-        <p>Operated by <strong><%= @flight.user.first_name %><%= @flight.user.last_name %></strong></p>
+        <p>Operated by <strong><%= @flight.user.first_name %> <%= @flight.user.last_name %></strong></p>
         <p>Total Capacity: <%= @flight.capacity %></p>
       </div>
+      <h2 class="card-trip-pricing"><%= @flight.price %>€</h2>
       <div>
           <%= simple_form_for [@flight, @booking] do |f| %>
-            <%= f.submit class: "btn btn-primary mt-4" %>
+            <%= f.submit class: "btn btn-flat mt-4", value: "Book now", data: {turbo_confirm: "Are you sure?"} %>
             <%= link_to "Edit", edit_flight_path(@flight), class: "btn btn-dark mt-4" %>
             <%= link_to "Delete", flight_path(@flight), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger mt-4" %>
           <% end %>
       </div>
-      <h2 class="card-trip-pricing"><%= @flight.price %>€</h2>
       <img src="https://kitt.lewagon.com/placeholder/users/n-fornaro" class="card-trip-user avatar-bordered" />
     </div>
   </div>
 
-        <div>
-      <ul>
-        <% @flight.bookings.each do |booking| %>
-        <li>
-          <%= booking.user.first_name %>
-        </li>
-        <% end %>
-      </ul>
-
+  <div>
+    <div class="card-product mt-5 mb-2" style="height: 50px; justify-content:center; background-color: #670AFF; color: white;">
+      <div class="card-product-infos">
+        <h2>Passengers' list :</h2>
       </div>
+    </div>
+    <% @flight.bookings.each do |booking| %>
+      <div class="card-product mt-2 mb-2">
+        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+        <div class="card-product-infos">
+          <h2><%= booking.user.first_name %><%= booking.user.last_name %></h2>
+          <p>Booking ID <strong>#<%= booking.id %></strong></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
 </div>
