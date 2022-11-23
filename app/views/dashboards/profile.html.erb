@@ -1,19 +1,19 @@
 <div class="container pt-4">
   <h1>Hello, <%= current_user.first_name %> <%= current_user.last_name %> !</h1>
-  <div class="img-profile">
-    <% if current_user.photo.key %>
-      <%= cl_image_tag current_user.photo.key %>
-    <% else %>
-      <%= cl_image_tag("https://images.assetsdelivery.com/compings_v2/nexusby/nexusby1810/nexusby181000286.jpg") %>
-    <% end %>
-  </div>
-
-  <div class="card-profile-infos">
-    <h2>Name : <%= current_user.first_name %> <%= current_user.last_name %></h2>
-    <h2>Email : <%= current_user.email %></h2>
-    <h2>Pilot : <%= current_user.pilot ? "Yes 🛩 " : "No 🐣"%></h2>
-
-    <%= link_to "UPDATE", edit_user_registration_path, class: "btn btn-info ms-5 mt-3" %>
+  <div class="card-profile">
+    <div class="img-profile">
+      <% if current_user.photo.key %>
+        <%= cl_image_tag current_user.photo.key %>
+      <% else %>
+        <%= cl_image_tag("https://images.assetsdelivery.com/compings_v2/nexusby/nexusby1810/nexusby181000286.jpg") %>
+      <% end %>
+    </div>
+    <div class="card-profile-infos">
+      <h2>Name : <%= current_user.first_name %> <%= current_user.last_name %></h2>
+      <h2>Email : <%= current_user.email %></h2>
+      <h2>Pilot : <%= current_user.pilot ? "Yes 🛩 " : "No 🐣"%></h2>
+      <%= link_to "UPDATE", edit_user_registration_path, class: "btn btn-info ms-5 mt-3" %>
+    </div>
   </div>
 
 
