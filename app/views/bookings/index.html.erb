@@ -1,7 +1,7 @@
 
 <h2><%= @flight.departure %>-<%= @flight.arrival %></h2>
 <p>Date : <%= @flight.date %></p>
-<p>Date : <%= @flight.capacity %></p>
+<p>Capacity : <%= @flight.capacity %></p>
 <p>Captain : <%= @flight.user.first_name %> <%= @flight.user.last_name %></p>
 
 <% @bookings.each do |booking| %>
