@@ -1,8 +1,57 @@
-<h1>Dashbord</h1>
-<% @user_flights.each do |f| %>
-  <%=f.date %>
-  <%=f.departure %>
-  <%=f.arrival %>
-  <%=f.capacity %>
-  <%=f.price %>
-<%end %>
+<div class="container">
+  <div class="">
+    <h1>Profile :</h1>
+    <div class="card-trip">
+      <div class="card-trip-infos">
+        <h2>Name : <%= current_user.first_name %> <%= current_user.last_name %></h2>
+        <h2>Email : <%= current_user.email %></h2>
+        <h2>Pilot ? <%= current_user.pilot %></h2>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <% if current_user.pilot == true%>
+    <%sum = 0 %>
+    <% @user_flights.each do |f| %>
+    <div class="card-product">
+      <img src="https://images.unsplash.com/photo-1606768666853-403c90a981ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80" />
+      <div class="card-product-infos">
+        <h2>Flight <%= sum += 1 %> :</h2>
+          <p>Date de départ : <%=f.date %></p>
+          <p>Départ : <%=f.departure %></p>
+          <p>Arrivée : <%=f.arrival %></p>
+          <p>Capacity :<%=f.capacity %></p>
+          <p>Price/p: <%=f.price %> euros</p>
+          <i class="fa-solid fa-pen-to-square"><%= link_to "edit", edit_flight_path(f.id)%> </i>
+          <i class="fa-solid fa-trash"><%= link_to "delete", flight_path(f.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></i>
+
+      </div>
+    </div>
+    <br>
+    <%end %>
+  <% end %>
+
+  <br>
+
+  <% if @user_bookings.count > 0%>
+    <%sum = 0 %>
+    <%@user_bookings.each do |b| %>
+    <div class="card-product">
+      <img src="https://images.unsplash.com/photo-1527605158555-853f200063e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=671&q=80" />
+      <div class="card-product-infos">
+        <h2>Bookings <%= sum += 1 %> :</h2>
+          <p>Date de départ :<%= b.flight.date %></p>
+          <p>Départ :<%=b.flight.departure %></p>
+          <p>Arrivée :<%=b.flight.arrival %></p>
+          <p>Capacity :<%=b.flight.capacity %></p>
+          <p>Price :<%=b.flight.price %> euros</p>
+          <i class="fa-solid fa-trash"><%= link_to "delete", booking_path(b.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></i>
+      </div>
+    </div>
+    <br>
+    <%end %>
+  <% end %>
+
+</div>
