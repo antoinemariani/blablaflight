@@ -1,57 +1,69 @@
 <div class="container">
-  <div class="">
-    <h1>Profile :</h1>
-    <div class="card-trip">
-      <div class="card-trip-infos">
-        <h2>Name : <%= current_user.first_name %> <%= current_user.last_name %></h2>
-        <h2>Email : <%= current_user.email %></h2>
-        <h2>Pilot ? <%= current_user.pilot %></h2>
-      </div>
+
+  <div class="card-profile">
+    <%# <h1>Profile :</h1> %>
+    <div class="img-profile">
+      <% if current_user.photo.key %>
+        <%= cl_image_tag current_user.photo.key %>
+      <% else %>
+        <%= cl_image_tag("cld-sample") %>
+      <% end %>
     </div>
+    <div class="card-profile-infos">
+      <h2>Name : <%= current_user.first_name %> <%= current_user.last_name %></h2>
+      <h2>Email : <%= current_user.email %></h2>
+      <h2>Pilot : <%= current_user.pilot ? "Yes 🛩 " : "No 🐣"%></h2>
+
+      <%= link_to "UPDATE", edit_user_registration_path, class: "btn btn-info ms-5 mt-3" %>
+    </div>
+
   </div>
 
   <br>
+  <div>
+    <% if current_user.pilot == true%>
+      <%sum = 0 %>
+      <% @user_flights.each do |f| %>
+      <div class="card-product">
+        <img src="https://images.unsplash.com/photo-1606768666853-403c90a981ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80" />
+        <div class="card-product-infos">
+          <h2>Flight <%= sum += 1 %> :</h2>
+            <p>Departure Date: <%=f.date %></p>
+            <p>Departure : <%=f.departure %></p>
+            <p>Arrival : <%=f.arrival %></p>
+            <p>Capacity :<%=f.capacity %> people</p>
+            <p>Price/p: <%=f.price %> euros</p>
+            <i class="fa-solid fa-pen-to-square"><%= link_to "edit", edit_flight_path(f.id)%> </i>
+            <i class="fa-solid fa-trash"><%= link_to "delete", flight_path(f.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></i>
 
-  <% if current_user.pilot == true%>
-    <%sum = 0 %>
-    <% @user_flights.each do |f| %>
-    <div class="card-product">
-      <img src="https://images.unsplash.com/photo-1606768666853-403c90a981ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80" />
-      <div class="card-product-infos">
-        <h2>Flight <%= sum += 1 %> :</h2>
-          <p>Date de départ : <%=f.date %></p>
-          <p>Départ : <%=f.departure %></p>
-          <p>Arrivée : <%=f.arrival %></p>
-          <p>Capacity :<%=f.capacity %></p>
-          <p>Price/p: <%=f.price %> euros</p>
-          <i class="fa-solid fa-pen-to-square"><%= link_to "edit", edit_flight_path(f.id)%> </i>
-          <i class="fa-solid fa-trash"><%= link_to "delete", flight_path(f.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></i>
-
+        </div>
       </div>
-    </div>
-    <br>
-    <%end %>
-  <% end %>
+      <br>
+      <%end %>
+    <% end %>
+  </div>
 
   <br>
-
-  <% if @user_bookings.count > 0%>
-    <%sum = 0 %>
-    <%@user_bookings.each do |b| %>
-    <div class="card-product">
-      <img src="https://images.unsplash.com/photo-1527605158555-853f200063e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=671&q=80" />
-      <div class="card-product-infos">
-        <h2>Bookings <%= sum += 1 %> :</h2>
-          <p>Date de départ :<%= b.flight.date %></p>
-          <p>Départ :<%=b.flight.departure %></p>
-          <p>Arrivée :<%=b.flight.arrival %></p>
-          <p>Capacity :<%=b.flight.capacity %></p>
-          <p>Price :<%=b.flight.price %> euros</p>
-          <i class="fa-solid fa-trash"><%= link_to "delete", booking_path(b.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></i>
+  <div>
+    <% if @user_bookings.count > 0%>
+      <%sum = 0 %>
+        <%= link_to "Add a Booking", flights_path, class: "btn btn-flat mb-4" %>
+      <%@user_bookings.each do |b| %>
+      <div class="card-product ">
+        <img src="https://images.unsplash.com/photo-1527605158555-853f200063e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=671&q=80" />
+        <div class="card-product-infos" style="flex-grow:1">
+          <h2>Bookings <%= sum += 1 %> :</h2>
+            <p>Departure Date :<%= b.flight.date %></p>
+            <p>Departure :<%=b.flight.departure %></p>
+            <p>Arrival :<%=b.flight.arrival %></p>
+            <p>Capacity :<%=b.flight.capacity %> people</p>
+            <p>Price :<%=b.flight.price %> euros</p>
+            <i class="fa-solid fa-trash"><%= link_to "delete", booking_path(b.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></i>
+        </div>
       </div>
-    </div>
-    <br>
-    <%end %>
-  <% end %>
+      <br>
+      <%end %>
+    <% end %>
+  </div>
 
 </div>

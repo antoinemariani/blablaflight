@@ -7,4 +7,7 @@ class DashboardsController < ApplicationController
     authorize @user_flights
     authorize @user_bookings
   end
+
+  def edit
+  end
 end

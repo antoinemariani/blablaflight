@@ -5,6 +5,10 @@
 
   <div class="form-inputs">
     <%= f.input :email, required: true, autofocus: true %>
+    <%= f.input :first_name, required: true, autofocus: true, input_html: { autocomplete: "first_name" }%>
+    <%= f.input :last_name, required: true, autofocus: true, input_html: { autocomplete: "last_name" }%>
+    <%= f.input :photo, as: :file, label: "change your profile picture" %>
+    <p><%= f.input_field :pilot, as: :boolean%> Pilote</p>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
@@ -24,7 +28,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+    <%= f.button :submit, "Update", class:"btn btn-flat" %>
   </div>
 <% end %>
 
