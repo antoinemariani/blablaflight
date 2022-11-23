@@ -24,7 +24,7 @@
       <% if @flight.user.photo.key %>
         <%= cl_image_tag @flight.user.photo.key, crop: :thumb, gravity: :face, class: "card-trip-user avatar-bordered" %>
       <% else %>
-        <%= cl_image_tag("cld-sample", crop: :thumb, gravity: :face, class: "card-trip-user avatar-bordered") %>
+        <%= image_tag("https://images.assetsdelivery.com/compings_v2/nexusby/nexusby1810/nexusby181000286.jpg", class: "card-trip-user avatar-bordered") %>
       <% end %>
     </div>
   </div>
@@ -41,7 +41,7 @@
         <% if booking.user.photo.key %>
           <%= cl_image_tag booking.user.photo.key, height: 300, width: 400, crop: :fill %>
         <% else %>
-          <%= cl_image_tag("cld-sample", crop: :thumb, gravity: :face) %>
+          <%= image_tag("https://images.assetsdelivery.com/compings_v2/nexusby/nexusby1810/nexusby181000286.jpg") %>
         <% end %>
 
         <div class="card-product-infos" style="flex-grow: 1;">
