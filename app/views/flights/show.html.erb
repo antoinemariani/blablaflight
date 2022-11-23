@@ -15,6 +15,8 @@
       <div>
           <%= simple_form_for [@flight, @booking] do |f| %>
             <%= f.submit class: "btn btn-flat mt-4", value: "Book now", data: {turbo_confirm: "Are you sure?"} %>
+            <%= link_to "Edit", edit_flight_path(@flight), class: "btn btn-dark mt-4" %>
+            <%= link_to "Delete", flight_path(@flight), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger mt-4" %>
           <% end %>
       </div>
       <img src="https://kitt.lewagon.com/placeholder/users/n-fornaro" class="card-trip-user avatar-bordered" />
