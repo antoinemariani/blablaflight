@@ -6,23 +6,29 @@
   <br>
     <% @flights.each do |flight| %>
       <div class="card-product mt-2 mb-2">
-        <img src="https://www.openfly.fr/contentfiles/content-page-pictures/14309/GE%CC%81NE%CC%81RAL-2.webp" />
+        <% if flight.photo.attached? %>
+          <%= cl_image_tag flight.photo.key %>
+        <% else %>
+          <img src="https://www.openfly.fr/contentfiles/content-page-pictures/14309/GE%CC%81NE%CC%81RAL-2.webp" />
+        <% end %>
+
         <div class="card-product-infos" style="flex-grow: 1;">
           <h2><%= flight.departure %> > <%= flight.arrival%></h2>
           <p>Date: <strong><%= flight.date%></strong></p>
           <p>Price: <strong><%= flight.price%></strong></p>
           <% if flight.capacity < 1 %>
-            <p>Flight FULL</p>
+            <p><strong>No seat remaining</strong></p>
           </div>
             <div class="card-product-infos">
-              <%= link_to "See flight / booking details", flight_path(flight), class: "btn btn-flat disabled", style: "position: right" %>
+              <%= link_to "See details", flight_path(flight), class: "btn btn-flat disabled", style: "position: right" %>
             </div>
           <% else %>
           <p>Capacity : <strong><%= flight.capacity %></strong></p>
         </div>
           <div class="card-product-infos">
-            <%= link_to "See flight / booking details", flight_path(flight), class: "btn btn-flat", style: "position: right" %>
+            <%= link_to "See details", flight_path(flight), class: "btn btn-flat", style: "position: right" %>
           </div>
+          <%# <%= render "modal" %>
         <% end %>
       </div>
     <%end%>

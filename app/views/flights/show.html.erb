@@ -2,8 +2,13 @@
   <div>
     <%= link_to "◁ Back to flights", flights_path, class: "btn btn-danger mt-3 mb-3", style: "color: white;" %>
   </div>
+
   <div class="card-trip">
-    <img src="https://www.openfly.fr/contentfiles/content-page-pictures/14309/GE%CC%81NE%CC%81RAL-2.webp" />
+      <% if @flight.photo.attached? %>
+        <%= cl_image_tag @flight.photo.key %>
+      <% else %>
+        <img src="https://www.openfly.fr/contentfiles/content-page-pictures/14309/GE%CC%81NE%CC%81RAL-2.webp" />
+      <% end %>
     <div class="card-trip-infos">
       <div>
         <h2><%= @flight.departure %> - <%=@flight.arrival %> &emsp; &emsp; <%= @flight.price %>€</h2>

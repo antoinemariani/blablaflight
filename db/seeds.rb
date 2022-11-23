@@ -5,11 +5,17 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+
+################################################################################
+#### GEMS & CONFIG
 require 'faker'
 require "open-uri"
 
 
+################################################################################
 #### CREATING 100 USERS
+
 # u = 1
 # 100.times do
 #   puts "Creating user #{u}"
@@ -24,7 +30,10 @@ require "open-uri"
 #   u += 1
 # end
 
+
+################################################################################
 #### CREATING 40 FLIGHTS RANDOMLY
+
 # f = 1
 # 40.times do
 #   puts "Creating flight #{f}"
@@ -40,7 +49,10 @@ require "open-uri"
 #   f += 1
 # end
 
+
+################################################################################
 #### CREATING 160 BOOKINGS BASED ON FLIGHTS & USERS
+
 # b = 1
 # 160.times do
 #   puts "Creating booking #{b}"
@@ -51,17 +63,37 @@ require "open-uri"
 #   b += 1
 # end
 
+
+################################################################################
 #### ADDING PROFILE PICS TO USERS THAT DON'T HAVE ONE ALREADY
 
-User.all.each do |user|
-  if user.photo.attached?
-    puts "> #{user.first_name} #{user.last_name} already has a profile picture attached >>> no picture added"
+# User.all.each do |user|
+#   if user.photo.attached?
+#     puts "> #{user.first_name} #{user.last_name} already has a profile picture attached >>> no picture added"
+#   else
+#     file = URI.open("https://api.lorem.space/image/face?w=200&h=200")
+#     # article = Article.new(title: "NES", body: "A great console")
+#     user.photo.attach(io: file, filename: "#{user.first_name}_#{user.last_name}.png", content_type: "image/png")
+#     user.save!
+#     puts "> #{user.first_name} #{user.last_name} photo attached >>> #{user.photo.attached?}"
+#   end
+# end
+
+################################################################################
+#### ADDING PHOTOS TO FLIGHTS
+Flight.all.each do |flight|
+  if flight.photo.attached?
+    puts "> #{flight.departure} >> #{flight.arrival} already has a profile picture attached >>> no picture added"
   else
-    file = URI.open("https://api.lorem.space/image/face?w=200&h=200")
+    file = File.open("app/assets/images/flights/flight_#{flight.id}.jpg")
     # article = Article.new(title: "NES", body: "A great console")
-    user.photo.attach(io: file, filename: "#{user.first_name}_#{user.last_name}.png", content_type: "image/png")
-    user.save!
-    puts "> #{user.first_name} #{user.last_name} photo attached >>> #{user.photo.attached?}"
+    flight.photo.attach(
+      io: file,
+      filename: "#{flight.departure}_#{flight.arrival}_#{flight.id}.png",
+      content_type: "image/png"
+    )
+    flight.save!
+    puts "> #{flight.departure} #{flight.arrival} photo attached >>> #{flight.photo.attached?}"
   end
 end
 
