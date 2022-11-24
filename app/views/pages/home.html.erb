@@ -10,27 +10,37 @@
   <h1></h1>
   <p> </p>
 
-  <%= simple_form_for :search, url: root_path, method: :get do |f| %>
+  <%= simple_form_for :search, url: flights_path, method: :get do |f| %>
     <div class="search-form-control form-group mb-3">
-      <input class="form-control string required" type="text" name="search[query]" id="search_query" placeholder="Search will be available soon. Please come back" />
-      <button name="button" type="submit" class="btn btn-flat">
-        <i class="fas fa-search"></i> Search
+      <%= text_field_tag :query,
+          params[:query],
+          class: "form-control string required",
+          placeholder: "Find your next flight" %>
+      <%= submit_tag "Search", class: "btn btn-flat" %>
       </button>
     </div>
   <% end %>
 
   <div class="cards">
-  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://upload.wikimedia.org/wikipedia/commons/4/40/Notre_Dame_de_la_Garde.jpg)">
-    Marseille
-  </div>
 
-  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://a.travel-assets.com/findyours-php/viewfinder/images/res70/48000/48863-Dubai.jpg)">
-    Abu Dhabi
-  </div>
+  <a href="/flights?query=marseille&commit=Search" style="text-decoration: none;">
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://upload.wikimedia.org/wikipedia/commons/4/40/Notre_Dame_de_la_Garde.jpg)">
+      Marseille
+    </div>
+  </a>
 
-  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://upload.wikimedia.org/wikipedia/commons/b/b3/View_of_Rodez_14.jpg)">
-    Rodez
-  </div>
+  <a href="/flights?query=abu+dhabi&commit=Search" style="text-decoration: none;">
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://a.travel-assets.com/findyours-php/viewfinder/images/res70/48000/48863-Dubai.jpg)">
+      Abu Dhabi
+    </div>
+  </a>
+
+  <a href="/flights?query=rodez&commit=Search" style="text-decoration: none;">
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://upload.wikimedia.org/wikipedia/commons/b/b3/View_of_Rodez_14.jpg)">
+      Rodez
+    </div>
+  </a>
+
 </div>
 
 </div>

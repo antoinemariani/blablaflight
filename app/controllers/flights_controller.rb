@@ -3,7 +3,11 @@ class FlightsController < ApplicationController
 
   def index
     @flights = policy_scope(Flight)
-    @flights = Flight.all
+    if params[:query].present?
+      @flights = Flight.search_by_departure_and_arrival(params[:query])
+    else
+      @flights = Flight.all
+    end
   end
 
   def show

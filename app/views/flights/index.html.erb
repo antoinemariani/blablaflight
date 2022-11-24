@@ -4,32 +4,48 @@
     <%= link_to "Flying soon? Create a flight", new_flight_path, class: "btn btn-outline-primary"%>
   </div>
   <br>
-    <% @flights.each do |flight| %>
-      <div class="card-product mt-2 mb-2">
-        <% if flight.photo.attached? %>
-          <%= cl_image_tag flight.photo.key %>
-        <% else %>
-          <img src="https://www.openfly.fr/contentfiles/content-page-pictures/14309/GE%CC%81NE%CC%81RAL-2.webp" />
-        <% end %>
+  <%= simple_form_for :search, url: flights_path, method: :get do |f| %>
+    <div class="search-form-control form-group mb-3">
+      <%= text_field_tag :query,
+          params[:query],
+          class: "form-control string required bg-white",
+          placeholder: "Find a flight" %>
+      <%= submit_tag "Search", class: "btn btn-flat" %>
+      </button>
+    </div>
+  <% end %>
+  <br>
 
-        <div class="card-product-infos" style="flex-grow: 1;">
-          <h2><%= flight.departure %> > <%= flight.arrival%></h2>
-          <p>Date: <strong><%= flight.date%></strong></p>
-          <p>Price: <strong><%= flight.price%></strong></p>
-          <% if flight.capacity < 1 %>
-            <p><strong>No seat remaining</strong></p>
+    <% if @flights.empty? %>
+      <p> 🛩 There's no flight soon for your search. Please try another one :-) </p>
+    <% else %>
+      <% @flights.each do |flight| %>
+        <div class="card-product mt-2 mb-2">
+          <% if flight.photo.attached? %>
+            <%= cl_image_tag flight.photo.key %>
+          <% else %>
+            <img src="https://www.openfly.fr/contentfiles/content-page-pictures/14309/GE%CC%81NE%CC%81RAL-2.webp" />
+          <% end %>
+
+          <div class="card-product-infos" style="flex-grow: 1;">
+            <h2><%= flight.departure %> > <%= flight.arrival%></h2>
+            <p>Date: <strong><%= flight.date%></strong></p>
+            <p>Price: <strong><%= flight.price%></strong></p>
+            <% if flight.capacity < 1 %>
+              <p><strong>No seat remaining</strong></p>
+            </div>
+              <div class="card-product-infos">
+                <%= link_to "See details", flight_path(flight), class: "btn btn-flat disabled", style: "position: right" %>
+              </div>
+            <% else %>
+            <p>Capacity : <strong><%= flight.capacity %></strong></p>
           </div>
             <div class="card-product-infos">
-              <%= link_to "See details", flight_path(flight), class: "btn btn-flat disabled", style: "position: right" %>
+              <%= link_to "See details", flight_path(flight), class: "btn btn-flat", style: "position: right" %>
             </div>
-          <% else %>
-          <p>Capacity : <strong><%= flight.capacity %></strong></p>
+            <%# <%= render "modal" %>
+          <% end %>
         </div>
-          <div class="card-product-infos">
-            <%= link_to "See details", flight_path(flight), class: "btn btn-flat", style: "position: right" %>
-          </div>
-          <%# <%= render "modal" %>
-        <% end %>
-      </div>
-    <%end%>
+      <% end %>
+    <% end %>
 </div>
