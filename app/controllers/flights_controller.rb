@@ -9,6 +9,12 @@ class FlightsController < ApplicationController
   def show
     @booking = Booking.new
     authorize @flight
+    @markers =
+      {
+        lat: @flight.latitude,
+        lng: @flight.longitude,
+        info_window: render_to_string(partial: "info_window", locals: {flight: @flight})
+      }
   end
 
   def new
