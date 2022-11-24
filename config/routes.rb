@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   get "profile", to: "dashboards#profile"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :flights do
-    resources :bookings, only: %I[index show new create]
+    resources :bookings, only: %I[index show new create] do
+      member do
+        patch :accept
+        patch :decline
+      end
+    end
   end
   resources :bookings, only: %I[destroy]
   # Defines the root path route ("/")

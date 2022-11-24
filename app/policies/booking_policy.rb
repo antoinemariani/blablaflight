@@ -25,4 +25,12 @@ class BookingPolicy < ApplicationPolicy
   def profile?
     true
   end
+
+  def accept?
+    true
+  end
+
+  def decline?
+    true
+  end
 end
