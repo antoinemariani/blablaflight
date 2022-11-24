@@ -3,6 +3,7 @@ class FlightsController < ApplicationController
 
   def index
     @flights = policy_scope(Flight)
+    @booking = Booking.new
     if params[:query].present?
       @flights = Flight.search_by_departure_and_arrival(params[:query])
     else
@@ -13,6 +14,19 @@ class FlightsController < ApplicationController
   def show
     @booking = Booking.new
     authorize @flight
+    # checker si user a déjà book le flight
+    @already_book = false
+    @flight.bookings.each do |booking|
+      if booking.user_id == current_user.id
+        @already_book = true
+      end
+    end
+    @markers =
+      {
+        lat: @flight.latitude,
+        lng: @flight.longitude,
+        info_window: render_to_string(partial: "info_window", locals: {flight: @flight})
+      }
   end
 
   def new
