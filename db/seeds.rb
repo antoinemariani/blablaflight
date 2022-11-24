@@ -30,12 +30,11 @@ require "open-uri"
 #   u += 1
 # end
 
-
-################################################################################
-#### CREATING 40 FLIGHTS RANDOMLY
+# ################################################################################
+# #### CREATING 60 FLIGHTS RANDOMLY
 
 # f = 1
-# 40.times do
+# 60.times do
 #   puts "Creating flight #{f}"
 #   flight = Flight.new(
 #     departure: Faker::Nation.capital_city,
@@ -49,9 +48,8 @@ require "open-uri"
 #   f += 1
 # end
 
-
-################################################################################
-#### CREATING 160 BOOKINGS BASED ON FLIGHTS & USERS
+# ################################################################################
+# #### CREATING 160 BOOKINGS BASED ON FLIGHTS & USERS
 
 # b = 1
 # 160.times do
@@ -63,9 +61,8 @@ require "open-uri"
 #   b += 1
 # end
 
-
-################################################################################
-#### ADDING PROFILE PICS TO USERS THAT DON'T HAVE ONE ALREADY
+# ################################################################################
+# #### ADDING PROFILE PICS TO USERS THAT DON'T HAVE ONE ALREADY
 
 # User.all.each do |user|
 #   if user.photo.attached?
@@ -79,22 +76,22 @@ require "open-uri"
 #   end
 # end
 
-################################################################################
-#### ADDING PHOTOS TO FLIGHTS
-Flight.all.each do |flight|
-  if flight.photo.attached?
-    puts "> #{flight.departure} >> #{flight.arrival} already has a profile picture attached >>> no picture added"
-  else
-    file = File.open("app/assets/images/flights/flight_#{flight.id}.jpg")
-    # article = Article.new(title: "NES", body: "A great console")
-    flight.photo.attach(
-      io: file,
-      filename: "#{flight.departure}_#{flight.arrival}_#{flight.id}.png",
-      content_type: "image/png"
-    )
-    flight.save!
-    puts "> #{flight.departure} #{flight.arrival} photo attached >>> #{flight.photo.attached?}"
-  end
-end
+# ################################################################################
+# #### ADDING PHOTOS TO FLIGHTS
+# Flight.all.each do |flight|
+#   if flight.photo.attached?
+#     puts "> #{flight.departure} >> #{flight.arrival} already has a profile picture attached >>> no picture added"
+#   else
+#     file = File.open("app/assets/images/flights/flight_#{flight.id}.jpg")
+#     # article = Article.new(title: "NES", body: "A great console")
+#     flight.photo.attach(
+#       io: file,
+#       filename: "#{flight.departure}_#{flight.arrival}_#{flight.id}.png",
+#       content_type: "image/png"
+#     )
+#     flight.save!
+#     puts "> #{flight.departure} #{flight.arrival} photo attached >>> #{flight.photo.attached?}"
+#   end
+# end
 
 puts ">>>> Seed done. Please check it with 'rails console' command in terminal :-)"
