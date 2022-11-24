@@ -38,6 +38,20 @@ class BookingsController < ApplicationController
     redirect_to profile_path, status: :see_other
   end
 
+  def accept
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    booking.status = "true"
+    booking.update!
+  end
+
+  def decline
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    booking.status = "false"
+    booking.update!
+  end
+
   private
 
   def set_flight
