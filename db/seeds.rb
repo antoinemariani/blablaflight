@@ -10,6 +10,7 @@
 #### GEMS & CONFIG
 require 'faker'
 require "open-uri"
+require 'date'
 
 ################################################################################
 #### CREATING 100 USERS
@@ -39,7 +40,7 @@ f = 1
     arrival: Faker::Nation.capital_city,
     capacity: rand(2..10),
     user: User.where(pilot: true).sample,
-    date: (Date.today + rand(100)),
+    date: (DateTime.now + rand(100)),
     price: rand(500..10_000)
   )
   flight.save!
