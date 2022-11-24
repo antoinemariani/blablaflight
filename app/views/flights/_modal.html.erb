@@ -1,22 +1,43 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" class="btn btn-flat" data-bs-toggle="modal" data-bs-target="#flight<%=flight.id%>Modal">
   Book now
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="flight<%=flight.id%>Modal" tabindex="-1" aria-labelledby="flight<%=flight.id%>ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Book flight</h5>
+        <h5 class="modal-title" id="flight<%=flight.id%>ModalLabel">Book flight</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-       ...
+        <div class="card-trip">
+            <% if flight.photo.attached? %>
+              <%= cl_image_tag flight.photo.key, id: "modal-flight" %>
+            <% else %>
+              <img src="https://www.openfly.fr/contentfiles/content-page-pictures/14309/GE%CC%81NE%CC%81RAL-2.webp" id="modal-flight" />
+            <% end %>
+          <div class="card-trip-infos">
+            <div>
+              <h2><%= flight.departure %> - <%=flight.arrival %> &emsp; &emsp; <%= flight.price %>€</h2>
+              <p>Date: <%= flight.date %></p>
+              <p>Operated by <strong><%= flight.user.first_name %> <%= flight.user.last_name %></strong></p>
+              <p>Total Capacity: <%= flight.capacity %></p>
+            </div>
+            <% if flight.user.photo.key %>
+              <%= cl_image_tag flight.user.photo.key, crop: :thumb, gravity: :face, class: "card-trip-user avatar-bordered", id: "modal-avatar" %>
+            <% else %>
+              <%= image_tag("https://images.assetsdelivery.com/compings_v2/nexusby/nexusby1810/nexusby181000286.jpg", class: "card-trip-user avatar-bordered", id: "modal-avatar") %>
+            <% end %>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-flat bg-dark" data-bs-dismiss="modal">Close</button>
+        <%= simple_form_for [flight, @booking] do |f| %>
+          <%= f.submit class: "btn btn-flat", value: "Confirm", data: {turbo_confirm: "Are you sure?"} %>
+        <% end %>
       </div>
     </div>
   </div>

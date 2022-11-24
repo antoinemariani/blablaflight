@@ -4,7 +4,11 @@
     <%= f.input :capacity %>
     <%= f.input :date %>
     <%= f.input :departure, label: "Departure airport" %>
-    <%= f.input :arrival, label: "Arrival airport" %>
+    <%= f.input :arrival,
+                input_html: {data: {address_autocomplete_target: "arrival"}, class: "d-none"},
+                wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}, 
+                label: "Arrival airport"
+    %>
     <%= f.input :photo, as: :file, label: "Plane or Flight picture" %>
     <%= f.input :price, label: "Price (per passenger)" %>
     <%= f.submit class: "btn btn-flat mt-4" %>

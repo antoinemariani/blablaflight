@@ -21,11 +21,12 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.flight = @flight
     authorize @booking
+
     if @booking.save
       # diminuer la capacité du flight concerné
       @flight.capacity -= 1
       @flight.save
-      redirect_to flight_path(@flight)
+      redirect_to profile_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -34,6 +35,7 @@ class BookingsController < ApplicationController
   def destroy
     @booking = Booking.find(params[:id])
     authorize @booking
+    @booking.flight.capacity += 1 unless @booking.status == "false"
     @booking.destroy
     redirect_to profile_path, status: :see_other
   end
@@ -48,6 +50,7 @@ class BookingsController < ApplicationController
   def decline
     @booking = Booking.find(params[:id])
     authorize @booking
+    @booking.flight.capacity += 1
     @booking.status = "false"
     @booking.update!
   end
