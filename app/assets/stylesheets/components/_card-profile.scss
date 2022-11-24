@@ -36,3 +36,16 @@
   padding: 26px;
   flex-grow: 1;
 }
+
+.card-booking-flight{
+  height: 110px;
+  width: 55%;
+  padding: 15px;
+  overflow: hidden;
+  background: white;
+  // box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: inline-flex;
+  align-items: center;
+  border-radius: 5px;
+  border-top: 1px solid rgb(216, 215, 215);
+}
