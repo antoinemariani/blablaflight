@@ -43,16 +43,16 @@ class BookingsController < ApplicationController
   def accept
     @booking = Booking.find(params[:id])
     authorize @booking
-    booking.status = "true"
-    booking.update!
+    @booking.status = "true"
+    @booking.update!
   end
 
   def decline
     @booking = Booking.find(params[:id])
     authorize @booking
     @booking.flight.capacity += 1
-    booking.status = "false"
-    booking.update!
+    @booking.status = "false"
+    @booking.update!
   end
 
   private
