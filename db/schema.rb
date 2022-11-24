@@ -61,6 +61,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_24_103355) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "price"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["user_id"], name: "index_flights_on_user_id"
   end
 
