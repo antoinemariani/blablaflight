@@ -13,6 +13,13 @@ class FlightsController < ApplicationController
   def show
     @booking = Booking.new
     authorize @flight
+    # checker si user a déjà book le flight
+    @already_book = false
+    @flight.bookings.each do |booking|
+      if booking.user_id == current_user.id
+        @already_book = true
+      end
+    end
     @markers =
       {
         lat: @flight.latitude,
