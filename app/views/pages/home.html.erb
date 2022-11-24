@@ -1,46 +1,111 @@
-  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.aopa.org/-/media/Images/AOPA-Main/News-and-Media/2017/October/Seven-Sensational-Sightseeing-Flights/1013_Seven_Sensational_Sightseeing_Flights1/1013_seven_sensational_sightseeing_flights1_16x9.jpg);">
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://media.cntraveler.com/photos/5e14ee62a59b790008c7f107/16:9/w_2560%2Cc_limit/Surf-Air-Pilatus_1.jpg);">
     <div class="container">
-      <h1>Welcome to BlaBlaFlight !</h1>
-      <p>Find your next private jet escape and travel around the world now !</p>
-      <%= link_to "See all flights", flights_path, class: "btn btn-flat" %>
+      <div class="banner-infos">
+        <h1>Welcome to BlaBlaFlight !</h1>
+        <p>Find your next private jet escape and travel around the world now !</p>
+        <%= link_to "See all flights", flights_path, class: "btn btn-flat" %>
+      </div>
+      <%= simple_form_for :search, url: flights_path, method: :get do |f| %>
+        <div class="search-form-control form-group mt-5 mb-3">
+          <%= text_field_tag :query,
+              params[:query],
+              class: "form-control string required text-primary rounded-pill bg-light bg-gradient",
+              placeholder: "  Find your next flight" %>
+          <%= submit_tag "Search", class: "btn btn-flat rounded-pill" %>
+        </div>
+      <% end %>
     </div>
   </div>
 
 <div class="container pt-3">
-  <h1></h1>
-  <p> </p>
-
-  <%= simple_form_for :search, url: flights_path, method: :get do |f| %>
-    <div class="search-form-control form-group mb-3">
-      <%= text_field_tag :query,
-          params[:query],
-          class: "form-control string required",
-          placeholder: "Find your next flight" %>
-      <%= submit_tag "Search", class: "btn btn-flat" %>
-      </button>
-    </div>
-  <% end %>
 
   <div class="cards">
 
-  <a href="/flights?query=marseille&commit=Search" style="text-decoration: none;">
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://upload.wikimedia.org/wikipedia/commons/4/40/Notre_Dame_de_la_Garde.jpg)">
-      Marseille
-    </div>
-  </a>
+    <a href="/flights?query=marseille&commit=Search" style="text-decoration: none;">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://upload.wikimedia.org/wikipedia/commons/4/40/Notre_Dame_de_la_Garde.jpg)">
+        Marseille
+      </div>
+    </a>
 
-  <a href="/flights?query=abu+dhabi&commit=Search" style="text-decoration: none;">
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://a.travel-assets.com/findyours-php/viewfinder/images/res70/48000/48863-Dubai.jpg)">
-      Abu Dhabi
-    </div>
-  </a>
+    <a href="/flights?query=abu+dhabi&commit=Search" style="text-decoration: none;">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://a.travel-assets.com/findyours-php/viewfinder/images/res70/48000/48863-Dubai.jpg)">
+        Abu Dhabi
+      </div>
+    </a>
 
-  <a href="/flights?query=rodez&commit=Search" style="text-decoration: none;">
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://upload.wikimedia.org/wikipedia/commons/b/b3/View_of_Rodez_14.jpg)">
-      Rodez
-    </div>
-  </a>
+    <a href="/flights?query=berlin&commit=Search" style="text-decoration: none;">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://www.germany.travel/media/redaktion/content/bundeslaender/berlin/Berlin_Brandenburger_Tor_im_Sonnenuntergang_Leitmotiv_German_Summer_Cities.jpg)">
+        Berlin
+      </div>
+    </a>
 
+    <a href="/flights?query=toulouse&commit=Search" style="text-decoration: none;">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://www.tourmag.com/photo/art/grande/65921019-46944894.jpg?v=1657275291)">
+        Toulouse
+      </div>
+    </a>
+
+    <a href="/flights?query=madrid&commit=Search" style="text-decoration: none;">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://www.meteocity.com/images/cache/app_header/images/download/blocks/madrid-shutterstock-786312625-626281a226ccc894007492.jpg)">
+        Madrid
+      </div>
+    </a>
+
+    <a href="/flights?query=bogota&commit=Search" style="text-decoration: none;">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://www.colombia-travels.com/wp-content/uploads/adobestock-266299444-1.jpeg)">
+        Bogota
+      </div>
+    </a>
+
+      <a href="/flights?query=quito+mai&commit=Search" style="text-decoration: none;">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://www.voyages-equateur.com/wp-content/uploads/adobestock-131305531-1.jpeg)">
+        Quito
+      </div>
+    </a>
+
+    <a href="/flights?query=brasilia&commit=Search" style="text-decoration: none;">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://ideat.thegoodhub.com/wp-content/uploads/sites/3/2020/07/dsc8346.jpg)">
+        Brasilia
+      </div>
+    </a>
+
+    <a href="/flights?query=managua&commit=Search" style="text-decoration: none;">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/9e/2e/c3/antigua-catedral-de-managua.jpg?w=600&h=400&s=1)">
+        Managua
+      </div>
+    </a>
+
+    <a href="/flights?query=chiang+mai&commit=Search" style="text-decoration: none;">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://www.quefaireenthailande.com/wp-content/uploads/2020/11/Ban-Pa-Pong-Pieng-chiang-mai-que-faire-en-thailande-scaled.jpg)">
+        Chiang Mai
+      </div>
+    </a>
+
+    <a href="/flights?query=tokyo&commit=Search" style="text-decoration: none;">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/4b/5d/10/caption.jpg?w=500&h=300&s=1&cx=1005&cy=690&chk=v1_2ed86f729380ea073850)">
+        Tokyo
+      </div>
+    </a>
+
+    <a href="/flights?query=singapour&commit=Search" style="text-decoration: none;">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.prismic.io/cadremploi-edito/NzI1MjBiOTMtMDg2ZC00MjFhLWE4MmQtNGMzMjQ0ODZmYzBi_travailler_a_singapour-1140.jpg?auto=compress,format&rect=30,0,1080,540&w=800&h=400)">
+        Singapour
+      </div>
+    </a>
+  </div>
 </div>
 
+<div class="container pt-5" style=" display: flex; flex-direction: column;">
+  <div class="text-secondary ms-2">
+    <p>Can't find what you need? Find your next escape 👇</p>
+  </div>
+  <%= simple_form_for :search, url: flights_path, method: :get do |f| %>
+        <div class="search-form-control form-group mb-3">
+          <%= text_field_tag :query,
+              params[:query],
+              class: "form-control string required text-dark rounded-pill bg-light bg-gradient",
+              placeholder: "  Find your next flight" %>
+          <%= submit_tag "Search", class: "btn btn-flat rounded-pill" %>
+        </div>
+      <% end %>
 </div>
