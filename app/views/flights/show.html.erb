@@ -3,6 +3,17 @@
     <%= link_to "◁ Back to flights", flights_path, class: "btn btn-outline-dark mt-3 mb-3" %>
   </div>
 
+  <%= simple_form_for :search, url: flights_path, method: :get do |f| %>
+    <div class="search-form-control form-group mb-3">
+      <%= text_field_tag :query,
+          params[:query],
+          class: "form-control string required",
+          placeholder: "Find a flight" %>
+      <%= submit_tag "Search", class: "btn btn-flat" %>
+      </button>
+    </div>
+  <% end %>
+
   <div class="card-trip">
       <% if @flight.photo.attached? %>
         <%= cl_image_tag @flight.photo.key %>
@@ -21,7 +32,7 @@
           <%= simple_form_for [@flight, @booking] do |f| %>
             <%= f.submit class: "btn btn-flat mt-4", value: "Book now", data: {turbo_confirm: "Are you sure?"} %>
             <% if policy(@flight).edit? && policy(@flight).destroy? %>
-              <%= link_to "Edit", edit_flight_path(@flight), class: "btn btn-dark mt-4" %>
+            <%= link_to "Edit", edit_flight_path(@flight), class: "btn btn-dark mt-4" %>
               <%= link_to "Delete", flight_path(@flight), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger mt-4" %>
             <% end %>
           <% end %>

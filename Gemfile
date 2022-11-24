@@ -6,6 +6,10 @@ ruby "3.1.2"
 # Faker for DB seeds
 gem "faker"
 
+# Algolia + PG for search
+gem "algoliasearch-rails"
+gem "pg_search"
+
 # Cloudinary for hosting profile pictures
 gem "cloudinary"
 
