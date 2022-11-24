@@ -21,6 +21,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.flight = @flight
     authorize @booking
+
     if @booking.save
       # diminuer la capacité du flight concerné
       @flight.capacity -= 1

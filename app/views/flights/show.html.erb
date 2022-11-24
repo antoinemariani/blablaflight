@@ -62,3 +62,11 @@
   <% end %>
 
 </div>
+
+<div class="d-flex justify-content-center">
+<div style="width: 70%; height: 460px;"
+  data-controller="map"
+  data-map-marker-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
+</div>
