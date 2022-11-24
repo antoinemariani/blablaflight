@@ -29,11 +29,9 @@
         <img src="https://www.openfly.fr/contentfiles/content-page-pictures/14309/GE%CC%81NE%CC%81RAL-2.webp" />
       <% end %>
       <div class="card-product-infos" style="flex-grow: 1">
-        <h2>Flight <%= sum += 1 %> :</h2>
-            <p>Departure Date: <%=f.date %></p>
-            <p>Departure : <%=f.departure %></p>
-            <p>Arrival : <%=f.arrival %></p>
-            <p>Capacity :<%=f.capacity %> people</p>
+        <h2><%=f.departure %> > <%=f.arrival %></h2>
+            <p>Date: <%=f.date %></p>
+            <p>Capacity: <%=f.capacity %> people</p>
             <p>Price/p: <%=f.price %> euros</p>
       </div>
       <div class="card-product-infos">
@@ -58,12 +56,10 @@
             <img src="https://images.unsplash.com/photo-1527605158555-853f200063e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=671&q=80" />
           <% end %>
           <div class="card-product-infos" style="flex-grow:1">
-            <h2>Bookings <%= sum += 1 %> :</h2>
-              <p>Departure Date :<%= b.flight.date %></p>
-              <p>Departure :<%=b.flight.departure %></p>
-              <p>Arrival :<%=b.flight.arrival %></p>
-              <p>Capacity :<%=b.flight.capacity %> people</p>
-              <p>Price :<%=b.flight.price %> euros</p>
+            <h2><%=b.flight.departure %> > <%=b.flight.arrival %></h2>
+              <p>Date: <%= b.flight.date %></p>
+              <p>Capacity: <%=b.flight.capacity %> people</p>
+              <p>Price: <%=b.flight.price %> euros</p>
           </div>
           <div class="card-product-infos">
               <%= link_to "Cancel this booking", booking_path(b.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger me-3" %>
