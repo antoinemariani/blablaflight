@@ -3,17 +3,6 @@
     <%= link_to "◁ Back to flights", flights_path, class: "btn btn-outline-dark mt-3 mb-3" %>
   </div>
 
-  <%= simple_form_for :search, url: flights_path, method: :get do |f| %>
-    <div class="search-form-control form-group mb-3">
-      <%= text_field_tag :query,
-          params[:query],
-          class: "form-control string required",
-          placeholder: "Find a flight" %>
-      <%= submit_tag "Search", class: "btn btn-flat" %>
-      </button>
-    </div>
-  <% end %>
-
   <div class="card-trip">
       <% if @flight.photo.attached? %>
         <%= cl_image_tag @flight.photo.key %>
