@@ -1,9 +1,14 @@
 <div class="container pt-3">
   <div>
-    <%= link_to "◁ Back to flights", flights_path, class: "btn btn-danger mt-3 mb-3", style: "color: white;" %>
+    <%= link_to "◁ Back to flights", flights_path, class: "btn btn-outline-dark mt-3 mb-3" %>
   </div>
+
   <div class="card-trip">
-    <img src="https://www.openfly.fr/contentfiles/content-page-pictures/14309/GE%CC%81NE%CC%81RAL-2.webp" />
+      <% if @flight.photo.attached? %>
+        <%= cl_image_tag @flight.photo.key %>
+      <% else %>
+        <img src="https://www.openfly.fr/contentfiles/content-page-pictures/14309/GE%CC%81NE%CC%81RAL-2.webp" />
+      <% end %>
     <div class="card-trip-infos">
       <div>
         <h2><%= @flight.departure %> - <%=@flight.arrival %> &emsp; &emsp; <%= @flight.price %>€</h2>
@@ -16,7 +21,7 @@
           <%= simple_form_for [@flight, @booking] do |f| %>
             <%= f.submit class: "btn btn-flat mt-4", value: "Book now", data: {turbo_confirm: "Are you sure?"} %>
             <% if policy(@flight).edit? && policy(@flight).destroy? %>
-              <%= link_to "Edit", edit_flight_path(@flight), class: "btn btn-dark mt-4" %>
+            <%= link_to "Edit", edit_flight_path(@flight), class: "btn btn-dark mt-4" %>
               <%= link_to "Delete", flight_path(@flight), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger mt-4" %>
             <% end %>
           <% end %>
@@ -24,7 +29,7 @@
       <% if @flight.user.photo.key %>
         <%= cl_image_tag @flight.user.photo.key, crop: :thumb, gravity: :face, class: "card-trip-user avatar-bordered" %>
       <% else %>
-        <%= cl_image_tag("cld-sample", crop: :thumb, gravity: :face, class: "card-trip-user avatar-bordered") %>
+        <%= image_tag("https://images.assetsdelivery.com/compings_v2/nexusby/nexusby1810/nexusby181000286.jpg", class: "card-trip-user avatar-bordered") %>
       <% end %>
     </div>
   </div>
@@ -41,7 +46,7 @@
         <% if booking.user.photo.key %>
           <%= cl_image_tag booking.user.photo.key, height: 300, width: 400, crop: :fill %>
         <% else %>
-          <%= cl_image_tag("cld-sample", crop: :thumb, gravity: :face) %>
+          <%= image_tag("https://images.assetsdelivery.com/compings_v2/nexusby/nexusby1810/nexusby181000286.jpg") %>
         <% end %>
 
         <div class="card-product-infos" style="flex-grow: 1;">
