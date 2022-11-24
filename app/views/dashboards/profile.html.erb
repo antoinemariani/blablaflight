@@ -10,11 +10,18 @@
       <% end %>
     </div>
     <div class="card-profile-infos">
-      <h2>Name : <%= current_user.first_name %> <%= current_user.last_name %></h2>
-      <h2>Email : <%= current_user.email %></h2>
-      <h2>Pilot : <%= current_user.pilot ? "Yes 🛩 " : "No 🐣"%></h2>
-      <%= link_to "UPDATE", edit_user_registration_path, class: "btn btn-info ms-5 mt-3" %>
+      <p><strong>name :</strong></p>
+      <%= current_user.first_name %> <%= current_user.last_name %>
     </div>
+    <div class="card-profile-infos">
+      <p><strong>email :</strong></p>
+      <%= current_user.email %>
+    </div>
+    <div class="card-profile-infos">
+      <p><strong>pilot :</strong></p>
+      <%= current_user.pilot ? "Yes 🛩 " : "No 🐣"%>
+    </div>
+      <div><%= link_to "Update profile", edit_user_registration_path, class: "btn btn-info m-2 mt-3 me-5" %></div>
   </div>
 
   <br>
