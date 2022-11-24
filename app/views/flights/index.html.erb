@@ -41,9 +41,9 @@
             <p>Capacity : <strong><%= flight.capacity %></strong></p>
           </div>
             <div class="card-product-infos">
-              <%= link_to "See details", flight_path(flight), class: "btn btn-flat", style: "position: right" %>
+              <%# <%= link_to "See details", flight_path(flight), class: "btn btn-flat", style: "position: right" %>
+              <%= render "modal", flight: flight, style: "position: right" %>
             </div>
-            <%# <%= render "modal" %>
           <% end %>
         </div>
       <% end %>
