@@ -44,7 +44,8 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     authorize @booking
     @booking.status = "true"
-    @booking.update!
+    @booking.update!(booking_params)
+    redirect_to profile_path
   end
 
   def decline
@@ -52,7 +53,8 @@ class BookingsController < ApplicationController
     authorize @booking
     @booking.flight.capacity += 1
     @booking.status = "false"
-    @booking.update!
+    @booking.update!(booking_params)
+    redirect_to profile_path
   end
 
   private
@@ -62,6 +64,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.permit(:flight_id)
+    params.permit(:flight_id, :status)
   end
 end
