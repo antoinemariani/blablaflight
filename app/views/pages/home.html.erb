@@ -2,8 +2,8 @@
     <div class="container">
       <div class="banner-infos">
         <h1>Welcome to BlaBlaFlight !</h1>
-        <p>Find your next private jet escape and travel around the world now !</p>
-        <%= link_to "See all flights", flights_path, class: "btn btn-flat" %>
+        <p>Find your next private jet escape and travel around the world now</p>
+        <%= link_to "Discover our flights now", flights_path, class: "btn btn-flat rounded-pill " %>
       </div>
       <%= simple_form_for :search, url: flights_path, method: :get do |f| %>
         <div class="search-form-control form-group mt-5 mb-3">
