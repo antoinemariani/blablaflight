@@ -1,0 +1,48 @@
+  <div >
+    <% if current_user.pilot == true%>
+      <%= link_to "Add a Flight", new_flight_path, class: "btn btn-flat mb-4" %>
+      <% @user_flights.each do |f| %>
+      <div class="card-product">
+        <% if f.photo.attached? %>
+          <%= cl_image_tag f.photo.key %>
+        <% else %>
+          <img src="https://www.openfly.fr/contentfiles/content-page-pictures/14309/GE%CC%81NE%CC%81RAL-2.webp" />
+        <% end %>
+        <div class="card-product-infos" style="flex-grow: 1">
+          <h2><%=f.departure %> > <%=f.arrival %></h2>
+              <p>Date: <%=f.date %></p>
+              <p>Capacity: <%=f.capacity %> people</p>
+              <p>Price/p: <%=f.price %> euros</p>
+        </div>
+        <div class="card-product-infos">
+          <%= link_to "Edit this flight", edit_flight_path(f.id), class: "btn btn-outline-info me-3" %>
+          <%= link_to "Cancel this flight", flight_path(f.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger me-3" %>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <% if f.bookings.size > 0 %>
+          <% sum = 0 %>
+            <% f.bookings.each do |b| %>
+              <% unless b.status == "false" %>
+                <div class="card-booking-flight d-flex mt-1">
+                  <div class="card-product-infos p-2">
+                    <%= cl_image_tag current_user.photo.key, crop: :thumb, gravity: :face, class: "avatar dropdown-toggle" %>
+                  </div>
+                  <div class="card-product-infos p-2">
+                    <span><%= b.reload_user.first_name %> <%= b.reload_user.last_name %></span>
+                    <span class="d-block"><%= b.reload_user.email %></span>
+                    <h2>Seat <%= sum += 1 %></h2>
+                  </div>
+                  <div class="card-product-infos ms-4 p-2">
+                    <%= link_to "Accept the booking", accept_flight_booking_path(f,b), data: {turbo_method: :patch, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-success m-1" unless b.status == "true"%>
+                    <%= link_to "Decline the booking", decline_flight_booking_path(f, b), data: {turbo_method: :patch, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger m-1" %>
+                  </div>
+              <%end %>
+            <% end %>
+        <% end %>
+      </div>
+      <br>
+      <% end %>
+    <% end %>
+  </div>
