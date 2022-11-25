@@ -15,8 +15,8 @@
               <p>Price/p: <%=f.price %> euros</p>
         </div>
         <div class="card-product-infos">
-          <%= link_to "Edit this flight", edit_flight_path(f.id), class: "btn btn-outline-info me-3" %>
-          <%= link_to "Cancel this flight", flight_path(f.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger me-3" %>
+          <%= link_to "Edit", edit_flight_path(f.id), class: "btn btn-outline-info me-3" %>
+          <%= link_to "Cancel", flight_path(f.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger me-3" %>
         </div>
       </div>
 
@@ -36,8 +36,8 @@
                     <h2>Seat <%= sum += 1 %></h2>
                   </div>
                   <div class="card-product-infos ms-4 p-2">
-                    <%= link_to "Accept the booking", accept_flight_booking_path(f,b), data: {turbo_method: :patch, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-success m-1" unless b.status == "true"%>
-                    <%= link_to "Decline the booking", decline_flight_booking_path(f, b), data: {turbo_method: :patch, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger m-1" %>
+                    <%= link_to "Accept", accept_flight_booking_path(f,b), data: {turbo_method: :patch, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-success m-1" unless b.status == "true"%>
+                    <%= link_to "Decline", decline_flight_booking_path(f, b), data: {turbo_method: :patch, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger m-1" %>
                   </div>
               </div>
               <%end %>

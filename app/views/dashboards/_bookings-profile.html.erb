@@ -22,11 +22,10 @@
               <%end %>
           </div>
           <div class="card-product-infos">
-              <%= link_to "Cancel this booking", booking_path(b.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger me-3" %>
+              <%= link_to "Cancel booking", booking_path(b.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger me-3" %>
           </div>
         </div>
         <br>
         <% end %>
       <% end %>
   </div>
-  
