@@ -4,6 +4,12 @@ class FlightsController < ApplicationController
   def index
     @flights = policy_scope(Flight)
     @booking = Booking.new
+    @markers = @flights.geocoded.map do |flight|
+      {
+        lat: flight.latitude,
+        lng: flight.longitude
+      }
+    end
     if params[:query].present?
       @flights = Flight.search_by_departure_and_arrival(params[:query])
     else

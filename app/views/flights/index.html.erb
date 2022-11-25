@@ -3,6 +3,13 @@
     <%= link_to "Flying soon? Create a flight", new_flight_path, class: "btn btn-outline-primary" if current_user.pilot %>
   </div>
   <br>
+  <div class="d-flex justify-content-center">
+    <div style="width: 70%; height: 460px;"
+    data-controller="big-map"
+    data-big-map-markers-value="<%= @markers.to_json %>"
+    data-big-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+</div>
   <%= simple_form_for :search, url: flights_path, method: :get do |f| %>
     <div class="search-form-control form-group mb-3">
       <%= text_field_tag :query,
