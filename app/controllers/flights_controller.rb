@@ -17,15 +17,13 @@ class FlightsController < ApplicationController
     # checker si user a déjà book le flight
     @already_book = false
     @flight.bookings.each do |booking|
-      if booking.user_id == current_user.id
-        @already_book = true
-      end
+      @already_book = true if booking.user_id == current_user.id
     end
     @markers =
       {
         lat: @flight.latitude,
         lng: @flight.longitude,
-        info_window: render_to_string(partial: "info_window", locals: {flight: @flight})
+        info_window: render_to_string(partial: "info_window", locals: { flight: @flight })
       }
   end
 
