@@ -38,11 +38,13 @@
 
   <% if current_user == @flight.user %>
   <div>
+    <% unless @flight.bookings.empty? %>
     <div class="card-product mt-5 mb-2" style="height: 50px; justify-content:center; background-color: #670AFF; color: white;">
       <div class="card-product-infos">
         <h2>Passengers' list :</h2>
       </div>
     </div>
+    <% end %>
     <% @flight.bookings.each do |booking| %>
       <div class="card-product mt-2 mb-2">
         <% if booking.user.photo.key %>
@@ -63,12 +65,19 @@
   </div>
   <% end %>
 
-</div>
+  <div>
+    <div class="card-product mt-5 mb-2" style="height: 50px; justify-content:center; background-color: #670AFF; color: white;">
+          <div class="card-product-infos">
+            <h2>Arrival map :</h2>
+          </div>
+    </div>
 
-<div class="d-flex justify-content-center">
-<div style="width: 70%; height: 460px;"
-  data-controller="map"
-  data-map-marker-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-</div>
+    <div class="d-flex justify-content-center">
+      <div style="width: 100%; height: 460px;"
+        data-controller="map"
+        data-map-marker-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
+  </div>
 </div>

@@ -7,9 +7,9 @@
     <div class="search-form-control form-group mb-3">
       <%= text_field_tag :query,
           params[:query],
-          class: "form-control string required bg-white",
-          placeholder: "Find a flight" %>
-      <%= submit_tag "Search", class: "btn btn-flat" %>
+          class: "form-control string required rounded-pill bg-light bg-gradient",
+          placeholder: "  Find a flight" %>
+      <%= submit_tag "Search", class: "btn btn-flat rounded-pill me-1" %>
       </button>
     </div>
   <% end %>
@@ -19,7 +19,7 @@
       data-big-map-markers-value="<%= @markers.to_json %>"
       data-big-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
-    </div>
+  </div>
   <br>
 
     <% if @flights.empty? %>
@@ -41,7 +41,7 @@
               <p><strong>No seat remaining</strong></p>
             </div>
               <div class="card-product-infos">
-                <%= link_to "See details", flight_path(flight), class: "btn btn-flat disabled", style: "position: right" %>
+                <%= link_to "Full", flight_path(flight), class: "btn btn-flat disabled me-2", style: "position: right" %>
               </div>
             <% else %>
             <p>Capacity : <strong><%= flight.capacity %></strong></p>
