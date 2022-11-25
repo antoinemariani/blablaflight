@@ -1,2 +1,21 @@
-<h2><%= flight.arrival %></h2>
-<p>Arivée le: <%= flight.date %></p>
+<div class="card-trip" style="margin: -15px;">
+    <% if flight.photo.attached? %>
+      <%= cl_image_tag flight.photo.key, id: "modal-flight" %>
+    <% else %>
+      <img src="https://www.openfly.fr/contentfiles/content-page-pictures/14309/GE%CC%81NE%CC%81RAL-2.webp" id="modal-flight" />
+    <% end %>
+  <div class="card-trip-infos">
+    <div>
+      <h2><%= flight.departure %> - <%=flight.arrival %></h2>
+      <p><%= flight.price %>€</p>
+      <p>Date: <%= flight.date %></p>
+      <p>Operated by <strong><%= flight.user.first_name %> <%= flight.user.last_name %></strong></p>
+      <p>Total Capacity: <%= flight.capacity %></p>
+    </div>
+    <% if flight.user.photo.key %>
+      <%= cl_image_tag flight.user.photo.key, crop: :thumb, gravity: :face, class: "card-trip-user avatar-bordered", id: "modal-avatar", style: "width: 40px !important; height: 40px !important; top: -20px !important; right: 10px" %>
+    <% else %>
+      <%= image_tag("https://images.assetsdelivery.com/compings_v2/nexusby/nexusby1810/nexusby181000286.jpg", class: "card-trip-user avatar-bordered", id: "modal-avatar", style: "width: 40px !important; height: 40px !important; top: -20px !important; right: 10px") %>
+    <% end %>
+  </div>
+</div>

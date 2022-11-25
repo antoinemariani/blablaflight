@@ -12,7 +12,8 @@ class FlightsController < ApplicationController
     @markers = @flights.geocoded.map do |flight|
       {
         lat: flight.latitude,
-        lng: flight.longitude
+        lng: flight.longitude,
+        info_window: render_to_string(partial: "info_window", locals: {flight: flight})
       }
     end
   end
