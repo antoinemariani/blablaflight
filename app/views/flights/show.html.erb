@@ -19,12 +19,10 @@
       <%# <h2 class="card-trip-pricing"></h2> %>
       <div>
           <%= simple_form_for [@flight, @booking] do |f| %>
-              <% if !@already_book %>
                 <%= f.submit class: "btn btn-flat mt-4", value: "Book now", data: {turbo_confirm: "Are you sure?"} %>
-            <% end %>
             <% if policy(@flight).edit? && policy(@flight).destroy? %>
             <%= link_to "Edit", edit_flight_path(@flight), class: "btn btn-dark mt-4" %>
-              <%= link_to "Delete", flight_path(@flight), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger mt-4" %>
+              <%= link_to "Delete", flight_path(@flight), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger mt-4 text-white" %>
             <% end %>
           <% end %>
       </div>
@@ -38,11 +36,13 @@
 
   <% if current_user == @flight.user %>
   <div>
+    <% unless @flight.bookings.empty? %>
     <div class="card-product mt-5 mb-2" style="height: 50px; justify-content:center; background-color: #670AFF; color: white;">
       <div class="card-product-infos">
         <h2>Passengers' list :</h2>
       </div>
     </div>
+    <% end %>
     <% @flight.bookings.each do |booking| %>
       <div class="card-product mt-2 mb-2">
         <% if booking.user.photo.key %>
@@ -63,12 +63,19 @@
   </div>
   <% end %>
 
-</div>
+  <div>
+    <div class="card-product mt-5 mb-2" style="height: 50px; justify-content:center; background-color: #670AFF; color: white;">
+          <div class="card-product-infos">
+            <h2>Arrival map :</h2>
+          </div>
+    </div>
 
-<div class="d-flex justify-content-center">
-<div style="width: 70%; height: 460px;"
-  data-controller="map"
-  data-map-marker-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-</div>
+    <div class="d-flex justify-content-center">
+      <div style="width: 100%; height: 460px;"
+        data-controller="map"
+        data-map-marker-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
+  </div>
 </div>

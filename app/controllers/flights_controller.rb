@@ -9,6 +9,13 @@ class FlightsController < ApplicationController
     else
       @flights = Flight.all
     end
+    @markers = @flights.geocoded.map do |flight|
+      {
+        lat: flight.latitude,
+        lng: flight.longitude,
+        info_window: render_to_string(partial: "info_window", locals: {flight: flight})
+      }
+    end
   end
 
   def show

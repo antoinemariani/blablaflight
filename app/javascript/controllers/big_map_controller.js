@@ -3,10 +3,11 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static values = {
     apiKey: String,
-    marker: Object
+    markers: Array
   }
 
   connect() {
+    console.log("markers", this.apiKeyValue)
     mapboxgl.accessToken = this.apiKeyValue
 
     this.map = new mapboxgl.Map({
@@ -19,16 +20,17 @@ export default class extends Controller {
   }
 
   #addMarkersToMap() {
-      const popup = new mapboxgl.Popup().setHTML(this.markerValue.info_window)
+    this.markersValue.forEach((marker) => {
+      const popup = new mapboxgl.Popup().setHTML(marker.info_window)
       new mapboxgl.Marker()
-        .setLngLat([ this.markerValue.lng, this.markerValue.lat ])
+        .setLngLat([ marker.lng, marker.lat ])
         .setPopup(popup)
         .addTo(this.map)
-    }
+    })}
 
-  #fitMapToMarkers() {
-    const bounds = new mapboxgl.LngLatBounds()
-    bounds.extend([ this.markerValue.lng, this.markerValue.lat ])
-    this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
-  }
+    #fitMapToMarkers() {
+      const bounds = new mapboxgl.LngLatBounds()
+      this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
+      this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
+    }
 }
