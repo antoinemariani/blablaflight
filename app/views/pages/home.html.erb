@@ -1,21 +1,4 @@
-  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://media.cntraveler.com/photos/5e14ee62a59b790008c7f107/16:9/w_2560%2Cc_limit/Surf-Air-Pilatus_1.jpg);">
-    <div class="container">
-      <div class="banner-infos">
-        <h1>Welcome to BlaBlaFlight !</h1>
-        <p>Find your next private jet escape and travel around the world now</p>
-        <%= link_to "Discover our flights now", flights_path, class: "btn btn-flat rounded-pill " %>
-      </div>
-      <%= simple_form_for :search, url: flights_path, method: :get do |f| %>
-        <div class="search-form-control form-group mt-5 mb-3">
-          <%= text_field_tag :query,
-              params[:query],
-              class: "form-control string required text-primary rounded-pill bg-light bg-gradient",
-              placeholder: "  Find your next flight" %>
-          <%= submit_tag "Search", class: "btn btn-flat rounded-pill" %>
-        </div>
-      <% end %>
-    </div>
-  </div>
+<div><%= render "carousel-home" %></div>
 
 <div class="container pt-3">
 
