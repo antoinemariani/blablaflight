@@ -16,7 +16,7 @@
 // $body-font: "Work Sans", "Helvetica", "sans-serif";
 // $headers-font: "Nunito", "Helvetica", "sans-serif";
 
-// Custom fonts (antoine) :
+// Custom GoogleFonts (antoine v2) :
 $headers-font: "DM Sans", "sans-serif";
 $body-font: "Open Sans", "sans-serif";
 
@@ -24,12 +24,33 @@ $body-font: "Open Sans", "sans-serif";
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
-//   font-family: "Font Name";
+//   font-family: "TTHoves-DemiBold";
+//   src: font-url('TTHoves-DemiBold.woff');
+//   // src: font-url('FontFile.eot?#iefix') format('embedded-opentype'),
+//   //      font-url('FontFile.woff') format('woff'),
+//   //      font-url('FontFile.ttf') format('truetype')
+// }
+// $tthoves-demibold: "TTHoves-DemiBold";
+
+// @font-face {
+//   font-family: "TTHoves-Regular";
+//   src: font-url('TTHoves-Regular.woff'),
+//   // src: font-url('FontFile.eot?#iefix') format('embedded-opentype'),
+//   //      font-url('FontFile.woff') format('woff'),
+//   //      font-url('FontFile.ttf') format('truetype')
+// }
+// $tthoves-regular: "TTHoves-Regular";
+
+// $headers-font: $tthoves-demibold;
+// $body-font: $tthoves-regular;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+// To use a font file (.woff) uncomment following lines
+// @font-face {
+//   font-family: "TTHoves";
 //   src: font-url('FontFile.eot');
 //   src: font-url('FontFile.eot?#iefix') format('embedded-opentype'),
 //        font-url('FontFile.woff') format('woff'),
 //        font-url('FontFile.ttf') format('truetype')
 // }
-// $my-font: "Font Name";
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
