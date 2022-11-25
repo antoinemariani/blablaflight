@@ -20,14 +20,15 @@
         </div>
       </div>
 
-      <div class="d-flex justify-content-end">
+      <div class="d-flex flex-column">
         <% if f.bookings.size > 0 %>
           <% sum = 0 %>
             <% f.bookings.each do |b| %>
               <% unless b.status == "false" %>
+              <div >
                 <div class="card-booking-flight d-flex mt-1">
                   <div class="card-product-infos p-2">
-                    <%= cl_image_tag current_user.photo.key, crop: :thumb, gravity: :face, class: "avatar dropdown-toggle" %>
+                    <%= cl_image_tag b.user.photo.key, crop: :thumb, gravity: :face, class: "avatar dropdown-toggle" %>
                   </div>
                   <div class="card-product-infos p-2">
                     <span><%= b.reload_user.first_name %> <%= b.reload_user.last_name %></span>
@@ -38,6 +39,7 @@
                     <%= link_to "Accept the booking", accept_flight_booking_path(f,b), data: {turbo_method: :patch, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-success m-1" unless b.status == "true"%>
                     <%= link_to "Decline the booking", decline_flight_booking_path(f, b), data: {turbo_method: :patch, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger m-1" %>
                   </div>
+              </div>
               <%end %>
             <% end %>
         <% end %>
