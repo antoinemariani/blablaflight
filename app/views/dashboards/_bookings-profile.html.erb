@@ -16,9 +16,9 @@
               <% if b.status == "Pending" %>
                 <span class="btn btn-warning mt-3">Status : <%= b.status %></span>
               <% elsif b.status == "true" %>
-                <span class="btn btn-success mt-3">Status : <%= b.status %></span>
+                <span class="btn btn-success mt-3">Status : Confirmed </span>
               <%elsif b.status == "false" %>
-                <span class="btn btn-danger mt-3">Status : <%= b.status %></span>
+                <span class="btn btn-danger mt-3">Status : Rejected </span>
               <%end %>
           </div>
           <div class="card-product-infos">
