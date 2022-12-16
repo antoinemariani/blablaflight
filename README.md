@@ -1,1 +1,7 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+** BlaBlaFlight
+
+*** What is it?
+The ultimate platform for flightpooling, based on BlaBlaCar concept.
+
+*** How was it made?
+Pedagogic project made with Ruby, Rails, PostgreSQL, Ajax + Turbo, Stimulus. ↗
